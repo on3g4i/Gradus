@@ -11,9 +11,7 @@ use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::get('/test', function () {
-    return ('teste');
-});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

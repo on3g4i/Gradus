@@ -1,0 +1,11 @@
+@import 'sb-admin-2.min.css';
+@import url('datatables.net-dt');
+@import 'loader.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind dark (&:where(.dark, .dark *));
+
+[x-cloak] {
+    display: none;
+}

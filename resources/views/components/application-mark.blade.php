@@ -1,0 +1,1 @@
+<div> <img src="{{asset('build/assets/images/gradius_logo.jpg')}}" alt="logo_gradius" class="size-16 "></div>

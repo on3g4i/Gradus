@@ -21,17 +21,17 @@ use Illuminate\Support\Facades\Route;
     DocResources
 
 */
-Route::get("/tcc", [TccControllerApi::class, "index"])->name("index");
-Route::get("/tcc/{id}", [TccControllerApi::class, "show"])->name("show");
+Route::get("/tcc", [TccControllerApi::class, "index"])->name("tcc.api.index");
+Route::get("/tcc/{id}", [TccControllerApi::class, "show"])->name("tcc.api.show");
 Route::get("/docs-do-tcc/{id}", [TccControllerApi::class, "tcc_docs"])->name(
-    "tcc_docs",
+    "tcc.api.docs",
 );
 /* Rotas do Documento  */
 Route::get("/documento", [DocumentoControllerApi::class, "index"])->name(
-    "index",
+    "documento.api.index",
 );
 Route::get("/documento/{id}", [DocumentoControllerApi::class, "show"])->name(
-    "show",
+    "documento.api.show",
 );
 Route::get("/debug-storage", function () {
     $disk = Storage::disk("local");
@@ -50,4 +50,4 @@ Route::get("/debug-storage", function () {
     ]);
 });
 /* Rotas dos users */
-Route::get("/user", [UserControllerApi::class, "findUser"])->name("find");
+Route::get("/user", [UserControllerApi::class, "findUser"])->name("user.api.find");

@@ -1,6 +1,6 @@
 FROM php:8.2-cli
 
-# Instalar dependências do sistema
+# Dependências do sistema
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -10,24 +10,23 @@ RUN apt-get update && apt-get install -y \
     npm \
     && docker-php-ext-install pdo pdo_pgsql
 
-# Instalar Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Diretório da aplicação
 WORKDIR /var/www
 
-# Copiar arquivos do projeto
 COPY . .
 
-# Instalar dependências PHP
+# PHP deps
 RUN composer install --no-dev --optimize-autoloader
 
-# Instalar dependências JS e build do Vite
+# Frontend build
 RUN npm install && npm run build
 
-# Expor porta do Render
+# 🔑 PERMISSÕES (ESSENCIAL)
+RUN chmod -R 775 storage bootstrap/cache
+
 EXPOSE 10000
 
-# Start command
-CMD php artisan serve --host=0.0.0.0 --port=10000
-
+# 🔥 USAR PORT DINÂMICO
+CMD php artisan serve --host=0.0.0.0 --port=${PORT}

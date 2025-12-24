@@ -29,5 +29,8 @@ RUN chmod -R 775 storage bootstrap/cache
 EXPOSE 10000
 
 # 🔥 USAR PORT DINÂMICO
-CMD php -S 0.0.0.0:${PORT} -t public
+CMD 
+php artisan migrate --force && \
+php artisan config:cache && \
+php -S 0.0.0.0:${PORT} -t public
 
